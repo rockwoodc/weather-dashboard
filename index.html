@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./assets/style.css"/>
+</head>
+<body class="flex-column min-100-vh">
+    <header class="header">
+        <h1>Weather Dashboard</h1>
+      </header>
+    
+      <main class="flex-row justify-space-between">
+        <div class="col-12 col-md-5">
+          <div class="card">
+            <h1 class="card-header">Search for a City:</h1>
+            <form id="user-form" class="card-body">
+              <!--adds an input box where the city name will be aquired-->
+              <input name="city-name" id="city-name" type="text" autofocus="true" class="form-input">
+              <br>
+              <button type="submit" class="btn">Search</button>
+            </form>
+            <!-- where previously searched cities will appear-->
+            <div id="city-search"></div>
+          </div>
+          <!--weather information will appear-->
+        <div class="col-12 col-md-8" id="weather-info">
+            <div class="card"></div>
+        </div>
+        
+          
+<script src="./assets/script.js"></script>
+</body>
+</html>
