@@ -1,43 +1,50 @@
-var cityInput = document.querySelector("#city-name")
 var searchHistory = []
 var searchHistoryContainer = document.querySelector("#city-search");
 var apiKey = "&appid=8cde0c178514f3d28c21cf8f9c44b5a6"
 var weatherEl = document.getElementById("weather-info");
-// var lat =
-// var lon =
-// var temp = 
-// var humidity =
-// var windSpeed =
-// var uvIndex =
+var userFormEl = document.querySelector("#user-form");
+var cityInputEl = document.querySelector("#city-name");
 
-// allows input of city name to be added to the url
-// var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + apiKey;
-//get lat and lon var and add them into the other api
-
+var formSubmitHandler = function(event) {
+    event.preventDefault();
+    //get city from input element
+    var citySearch = cityInputEl.value.trim();
+        console.log(citySearch);
+    if (citySearch) {
+        getWeather(citySearch);
+        cityInputEl.value = "";
+    } else {
+        alert("Please enter a valid city.")
+    }
+    console.log(event);
+}
 //use this api url to test the function
-// var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=richmond&appid=8cde0c178514f3d28c21cf8f9c44b5a6"
+var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=richmond&appid=8cde0c178514f3d28c21cf8f9c44b5a6"
 // uses the api to find all weather for city
 var getWeather = function() {
     //format the api url
-    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInput + apiKey;
+    // var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInputEl + apiKey;
+    //get lat and lon var and add them into the other api??
 
     //make a request to url
     fetch(apiUrl).then(function(response) {
         response.json().then(function(data){
-        console.log(data);      
+        console.log(data.main.humidity);      
         })
-    });//         //used to display HTML
-    //         console.log(data);
-    //         var weatherData = data.temp;
-    //         for(var i = 0; i < weatherData; i++);
-    //             var tempData = document.createElement("li");
-    //             tempData.textContent = weatherData[i].temp;
-    //             weatherEl.appendChild(tempData);
-    //     });
+    });
+
+    //   //used to display HTML
+    //   var weatherData = data.main.temp;
+    //   for(var i = 0; i < weatherData; i++);
+    //       var tempData = document.createElement("li");
+    //       tempData.textContent = weatherData[i].temp;
+    //       weatherEl.appendChild(tempData);
+            
+        
 
     };
     //parse out data for temp, humidity, wind speed, & uv index
-getWeather();
+userFormEl.addEventListener("submit", formSubmitHandler);
 //show 5 day forcast
 
 //save users searched cities
