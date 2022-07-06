@@ -9,47 +9,59 @@ var formSubmitHandler = function(event) {
     event.preventDefault();
     //get city from input element
     var citySearch = cityInputEl.value.trim();
-        console.log(citySearch);
     if (citySearch) {
-        getWeather(citySearch);
+     getLocation(citySearch);
         cityInputEl.value = "";
     } else {
         alert("Please enter a valid city.")
     }
-    console.log(event);
 }
-//use this api url to test the function
-// var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=richmond&appid=8cde0c178514f3d28c21cf8f9c44b5a6"
 
 // uses the api to find all weather for city
-var getWeather = function() {
+var getLocation = function(city) {
     //format the api url
-    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInputEl + apiKey;
-    //get lat and lon var and add them into the other api??
-
+    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + apiKey;
+    
     //make a request to url
     fetch(apiUrl).then(function(response) {
-        response.json().then(function(data){
-        console.log(data.main.humidity);      
-        })
-       
-    });
-
-    //   //used to display HTML
-    //   var weatherData = data.main.temp;
-    //   for(var i = 0; i < weatherData; i++);
-    //       var tempData = document.createElement("li");
-    //       tempData.textContent = weatherData[i].temp;
-    //       weatherEl.appendChild(tempData);
-            
+        response.json().then(function(data){ 
+        getWeather(data.coord);
         
-
+        })   
+    });
     };
-    //parse out data for temp, humidity, wind speed, & uv index
-userFormEl.addEventListener("submit", formSubmitHandler);
-//show 5 day forcast
 
-//save users searched cities
+//get lat and lon var and add them into the other api url
+var getWeather = function (coord) {
+    var long = coord.lon
+    var lat = coord.lat
+    var apiUrl= "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long + apiKey;
+    
+    fetch(apiUrl).then(function(response) {
+        response.json().then(function(data){ 
+            displayCurrent(data);
+        })   
+    });
+}
+var displayCurrent = function (weather){
+    console.log(weather);
+    //parse out data for temp, humidity, wind speed, & uv index
+    var tempData = document.getElementById("temp");
+    tempData.textContent = weather.current.temp + " K";
+    var windData = document.getElementById("winds");
+    windData.textContent = weather.current.wind_speed + " MPH";
+    var humData = document.getElementById("humidity");
+    humData.textContent = weather.current.humidity + " %";
+    var UVData = document.getElementById("uv");
+    UVData.textContent = weather.current.uvi;
+}  
+
+//color code uv index as high, medium, low
+
+userFormEl.addEventListener("submit", formSubmitHandler);
+// show 5 day forcast
+
+// save users searched cities
 // function getsearch() {
 //     searchHistoryContainer.innerHTML = "";
 //     console.log("hello");
