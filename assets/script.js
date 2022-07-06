@@ -1,7 +1,7 @@
 var searchHistory = []
 var searchHistoryContainer = document.querySelector("#city-search");
 var apiKey = "&appid=8cde0c178514f3d28c21cf8f9c44b5a6"
-var weatherEl = document.getElementById("weather-info");
+var weatherEl = document.getElementById("forcast-info");
 var userFormEl = document.querySelector("#user-form");
 var cityInputEl = document.querySelector("#city-name");
 
@@ -19,11 +19,12 @@ var formSubmitHandler = function(event) {
     console.log(event);
 }
 //use this api url to test the function
-var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=richmond&appid=8cde0c178514f3d28c21cf8f9c44b5a6"
+// var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=richmond&appid=8cde0c178514f3d28c21cf8f9c44b5a6"
+
 // uses the api to find all weather for city
 var getWeather = function() {
     //format the api url
-    // var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInputEl + apiKey;
+    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInputEl + apiKey;
     //get lat and lon var and add them into the other api??
 
     //make a request to url
@@ -31,6 +32,7 @@ var getWeather = function() {
         response.json().then(function(data){
         console.log(data.main.humidity);      
         })
+       
     });
 
     //   //used to display HTML
