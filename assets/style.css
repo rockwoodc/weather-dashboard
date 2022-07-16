@@ -14,15 +14,3 @@
     color: white;
     background-color: rgb(0, 200, 255);
   }
-
-  .uv-low {
-    background-color: rgb(103, 169, 103);
-  }
-
-  .uv-moderate {
-    background-color: rgb(251, 251, 167);
-  }
-
-  .uv-high {
-    background-color: rgb(247, 105, 105);
-  }
