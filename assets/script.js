@@ -9,7 +9,7 @@ var card2EL = document.getElementById("2");
 var card3EL = document.getElementById("3");
 var card4EL = document.getElementById("4");
 var card5EL = document.getElementById("5");
-
+var fiveDayEL = document.getElementById("five-day-forcast");
 
 var formSubmitHandler = function(event) {
     event.preventDefault();
@@ -17,10 +17,26 @@ var formSubmitHandler = function(event) {
     var citySearch = cityInputEl.value.trim();
     if (citySearch) {
      getLocation(citySearch);
+     checkHistory(citySearch);
         cityInputEl.value = "";
     } else {
         alert("Please enter a valid city.")
     }
+}
+
+//create a function to check whether a searched city is in search history
+function checkHistory(city){
+    console.log(city);
+    //check to see if there is a search history array in local storage
+    if (localStorage.getItem("searchHistory")){
+        searchHistory = localStorage.getItem("searchHistory");
+        searchHistory = searchHistory.push(city);
+        //check the array that comes back to see if the city already there
+    }else{
+        localStorage.setItem("searchHistory", searchHistory);
+
+    }
+    console.log(searchHistory);
 }
 
 // uses the api to find all weather for city
@@ -78,17 +94,61 @@ userFormEl.addEventListener("submit", formSubmitHandler);
 // show 5 day forcast
 var fiveDay = function(forcast) {
     var fiveTemp = forcast.daily
-    for (let i=0; i<5; i++) {
-        //run through each card to populate information
-        let currentStepVar = "card" + [i + 1] +"EL";
-        currentStepVar.textContent = fiveTemp[i].temp.max;
-        console.log(currentStepVar);
+    console.log(fiveTemp);
+    for (let i=1; i<6; i++) {
+        //populate date information
+        var dateMilliseconds = fiveTemp[i].dt * 1000;
+        var dateObject = new Date(dateMilliseconds);
+        var readableDate = dateObject.toLocaleString();
+        readableDate = readableDate.split(",");
+        readableDate = readableDate[0];
+        // console.log(readableDate);
+
+        //populate date information
+        var tempObject = fiveTemp[i].temp.max - 273.15;
+        var tempF = "Temp: " + tempObject * 1.8 + 32 + " F";
+        
+
+        //populate wind information
+         var windObject = "Wind speed: " + fiveTemp[i].wind_speed + " MPH";
+
+        //populate humidity information
+         var humObject = "Humidity: " + fiveTemp[i].humidity + "%";
+
+        //append data to elements
+        var dateEL = document.createElement("h3");
+        dateEL.innerText = readableDate;
+
+        var tempEl = document.createElement("p");
+        tempEl.innerText = tempF;
+
+        var windEl = document.createElement("p")
+        windEl.innerText = windObject;
+
+        var humEl = document.createElement("p");
+        humEl.innerText = humObject;
+
+        //append elements to card
+        var card = document.createElement("div");
+        card.appendChild(dateEL);
+        card.appendChild(tempEl);
+        card.appendChild(windEl);
+        card.appendChild(humEl);
+        console.log(card);
+
+        
+        //add a class to our card element
+        card.classList.add("forcastCards");    
+
+
+        //append card to the dom
+        fiveDayEL.append(card);
     };
      
 
 }
 // save users searched cities
-// function getsearch(search) {
+// function getSearch(search) {
 //     searchHistoryContainer.innerHTML = "";
 //     console.log(search);
 
@@ -105,4 +165,4 @@ var fiveDay = function(forcast) {
 //     localStorage.setItem("city-search",JSON.stringify(searchHistory));
 // };
 
-// getsearch();
+// getSearch();

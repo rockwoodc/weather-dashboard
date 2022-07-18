@@ -5,12 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
+    <!--bootstrap-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Staatliches&display=swap" rel="stylesheet">
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
-  <link rel="stylesheet" href="./assets/css/style.css" />
+    <!--jquery-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css">
+    <!--google fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Staatliches&display=swap" rel="stylesheet">
+    <!--icons-->
+    <!-- <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" /> -->
+    <!--my style sheet-->
     <link rel="stylesheet" href="./assets/style.css"/>
 </head>
 <body class="flex-column min-100-vh">
@@ -30,94 +34,97 @@
             </form>
             <!-- where previously searched cities will appear-->
             <div id="city-search"></div>
+        </div>
 
-            <div class="card">
-              <div id="1" class="card" style="width: 18rem;">
+        <div class="col-12 col-md-8">
+          <div id="1" class="card" style="width: 18rem;">
+            <div class="card-header">
+              City & Date
+            </div>
+            <ul class="weather-data list-group list-group-flush">
+              <li class="list-group-item">Temperature: <span id="temp"></span></li>
+              <li class="list-group-item">Winds: <span id="winds"></span></li>
+              <li class="list-group-item">Humidity: <span id="humidity"></span></li>
+              <li class="list-group-item"> UV Index: <span id="uv"></span></li>
+            </ul>
+          </div>
+        </div>
+
+      
+          <!--weather information will appear-->
+        <div class="flex-container list-group" id="forcast-info">
+            <!--5 day forcast starts-->
+          <div class="card" id="five-day-forcast">
+            <h2>Five Day Forcast</h2>
+              <!--cards that hold 5 day forcast info -->
+              <!--day 1 on array-->
+             <!-- <div id="1" class="card" style="width: 18rem;">
                 <div class="card-header">
-                  City & Date
+                  Date
                 </div>
-                <ul class="weather-data list-group list-group-flush">
-                  <li class="list-group-item">Temperature: <span id="temp"></span></li>
-                  <li class="list-group-item">Winds: <span id="winds"></span></li>
-                  <li class="list-group-item">Humidity: <span id="humidity"></span></li>
-                  <li class="list-group-item"> UV Index: <span id="uv"></span></li>
+                <ul class="list-group list-group-flush">
+                  <li id="temp" class="list-group-item">Temp: </li>
+                  <li id="winds" class="list-group-item">Winds: </li>
+                  <li id="hum" class="list-group-item">Humidity: </li>
                 </ul>
               </div>
-          </div>
-          <!--weather information will appear-->
-        <div class="col-12 col-md-8" id="forcast-info">
-            <!--5 day forcast starts-->
-            <div id="five-day-forcast">
-                <h2>Five Day Forcast</h2>
-                <!--cards that hold 5 day forcast info -->
-                <!--day 1 on array-->
-                <div id="1" class="card" style="width: 18rem;">
-                  <div class="card-header">
-                    Date
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li id="temp" class="list-group-item">Temp: </li>
-                    <li id="winds" class="list-group-item">Winds: </li>
-                    <li id="hum" class="list-group-item">Humidity: </li>
-                  </ul>
-                </div>
 
-                <br>
+                <br> -->
 
                 <!--day 2 on array-->
-                <div id="2" class="card" style="width: 18rem;">
-                  <div class="card-header">
+              <!-- <div id="2" class="card" style="width: 18rem;">
+                <div class="card-header">
                     Date
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li id="temp" class="list-group-item">Temp: </li>
-                    <li id="winds" class="list-group-item">Winds: </li>
-                    <li id="hum" class="list-group-item">Humidity: </li>
-                  </ul>
                 </div>
-
-                <br>
-
-                <!--day 3 on array-->
-                <div id="3" class="card" style="width: 18rem;">
-                  <div class="card-header">
-                    Date
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li id="temp" class="list-group-item">Temp: </li>
-                    <li id="winds" class="list-group-item">Winds: </li>
-                    <li id="hum" class="list-group-item">Humidity: </li>
-                  </ul>
-                </div>
-
-                <br>
-
-                <!--day 4 on array-->
-                <div id="4" class="card" style="width: 18rem;">
-                  <div class="card-header">
-                    Date
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li id="temp" class="list-group-item">Temp: </li>
-                    <li id="winds" class="list-group-item">Winds: </li>
-                    <li id="hum" class="list-group-item">Humidity: </li>
-                  </ul>
-                </div>
-
-                <br>
-
-                <!--day 5 on array-->
-                <div id="5" class="card" style="width: 18rem;">
-                  <div class="card-header">
-                    Date
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li id="temp" class="list-group-item">Temp: </li>
-                    <li id="winds" class="list-group-item">Winds: </li>
-                    <li id="hum" class="list-group-item">Humidity: </li>
-                  </ul>
-                </div>
+                <ul class="list-group list-group-flush">
+                  <li id="temp" class="list-group-item">Temp: </li>
+                  <li id="winds" class="list-group-item">Winds: </li>
+                  <li id="hum" class="list-group-item">Humidity: </li>
+                </ul>
               </div>
+
+                <br> -->
+
+              <!--day 3 on array-->
+              <!-- <div id="3" class="card" style="width: 18rem;">
+                <div class="card-header">
+                   Date
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li id="temp" class="list-group-item">Temp: </li>
+                  <li id="winds" class="list-group-item">Winds: </li>
+                  <li id="hum" class="list-group-item">Humidity: </li>
+                </ul>
+              </div>
+
+                <br> -->
+
+              <!--day 4 on array-->
+              <!-- <div id="4" class="card" style="width: 18rem;">
+                <div class="card-header">
+                  Date
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li id="temp" class="list-group-item">Temp: </li>
+                  <li id="winds" class="list-group-item">Winds: </li>
+                  <li id="hum" class="list-group-item">Humidity: </li>
+                </ul>
+              </div>
+
+                <br> -->
+
+              <!--day 5 on array-->
+              <!-- <div id="5" class="card" style="width: 18rem;">
+                <div class="card-header">
+                  Date
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li id="temp" class="list-group-item">Temp: </li>
+                  <li id="winds" class="list-group-item">Winds: </li>
+                  <li id="hum" class="list-group-item">Humidity: </li>
+                </ul>
+              < </div>-->
+            </div>
             
         
           
