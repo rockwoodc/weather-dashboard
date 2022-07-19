@@ -1,15 +1,10 @@
 var searchHistory = []
 var searchHistoryContainer = document.getElementById("#city-search");
 var apiKey = "&appid=8cde0c178514f3d28c21cf8f9c44b5a6"
-var weatherEl = document.getElementById("forcast-info");
+var weatherEl = document.getElementById("forecast-info");
 var userFormEl = document.querySelector("#user-form");
 var cityInputEl = document.querySelector("#city-name");
-var card1EL = document.getElementById("1");
-var card2EL = document.getElementById("2");
-var card3EL = document.getElementById("3");
-var card4EL = document.getElementById("4");
-var card5EL = document.getElementById("5");
-var fiveDayEL = document.getElementById("five-day-forcast");
+var fiveDayEL = document.getElementById("five-day-forecast");
 
 var formSubmitHandler = function(event) {
     event.preventDefault();
@@ -67,9 +62,24 @@ var getWeather = function (coord) {
 }
 var displayCurrent = function (weather){
     console.log(weather);
+    //display current date and place
+    for (let i=0; i<1; i++) {
+        //populate current date information
+        var currentDateMilliseconds = weather.current.dt * 1000;
+        var currentDate = new Date(currentDateMilliseconds);
+        var readableCurrentDate = currentDate.toLocaleString();
+        readableCurrentDate = readableCurrentDate.split(",");
+        readableCurrentDate = readableCurrentDate[0];
+        //append data to elements
+        var CurrentDateEL = document.getElementById("currentPlace");
+        CurrentDateEL.textContent = readableCurrentDate;
+
+    }
     //parse out data for temp, humidity, wind speed, & uv index
-    var tempData = document.getElementById("temp");
-        tempData.textContent = weather.current.temp + " K";
+    var tempData = document.getElementById("temp");    
+    var tempF1 = weather.current.temp - 273.15;
+    //finish out the equation to convert to F
+    tempData.textContent = "Temp: " + Math.round(tempF1 * 1.8 + 32) + " F";
     var windData = document.getElementById("winds");
         windData.textContent = weather.current.wind_speed + " MPH";
     var humData = document.getElementById("humidity");
@@ -85,15 +95,11 @@ var displayCurrent = function (weather){
             UVData.style.backgroundColor = "rgb(247, 105, 105)";
         };
 }
-//convert kelvin to fahrenheit
-// var kelvinToFahrenheit = fucntion(temp){
-//     1.8 * (('#temp')-273) + 32
-// }
 
 userFormEl.addEventListener("submit", formSubmitHandler);
 // show 5 day forcast
-var fiveDay = function(forcast) {
-    var fiveTemp = forcast.daily
+var fiveDay = function(forecast) {
+    var fiveTemp = forecast.daily
     console.log(fiveTemp);
     for (let i=1; i<6; i++) {
         //populate date information
@@ -102,12 +108,11 @@ var fiveDay = function(forcast) {
         var readableDate = dateObject.toLocaleString();
         readableDate = readableDate.split(",");
         readableDate = readableDate[0];
-        // console.log(readableDate);
 
-        //populate date information
+        //populate temp information & convert K to F
         var tempObject = fiveTemp[i].temp.max - 273.15;
-        var tempF = "Temp: " + tempObject * 1.8 + 32 + " F";
-        
+        //finish out the equation to convert to F
+        var tempF = "Temp: " + Math.round(tempObject * 1.8 + 32) + " F";
 
         //populate wind information
          var windObject = "Wind speed: " + fiveTemp[i].wind_speed + " MPH";
@@ -134,18 +139,15 @@ var fiveDay = function(forcast) {
         card.appendChild(tempEl);
         card.appendChild(windEl);
         card.appendChild(humEl);
-        console.log(card);
 
         
         //add a class to our card element
-        card.classList.add("forcastCards");    
+        card.classList.add("forecastCards");    
 
 
         //append card to the dom
         fiveDayEL.append(card);
     };
-     
-
 }
 // save users searched cities
 // function getSearch(search) {

@@ -14,3 +14,24 @@
     color: white;
     background-color: rgb(0, 200, 255);
   }
+
+  #searchBox, #city-search {
+    float: left;
+  }
+
+  /* #currentW {
+
+  } */
+
+  /* .forecastCards {
+    position: relative;
+  }
+
+  #five-day {
+    display: flex;
+  } */
+
+
+  /* h2{
+    background-color: rgb(173, 173, 224);
+  } */
