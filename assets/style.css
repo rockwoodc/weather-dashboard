@@ -1,10 +1,12 @@
-.header {
+.navbar {
     padding: 0.5px;
-    font-size: 20px;
     margin: 0.67em 0;
-    background-image: linear-gradient(to right,rgb(61, 64, 254),rgb(20, 6, 112));
-    color: white;
-    text-align: center;      
+    background-image: linear-gradient(to right,rgb(61, 64, 254),rgb(20, 6, 112));         
+}
+
+.navbar-item {
+    color:white;
+    font-size: 20px;
 }
 
 .btn {
@@ -15,9 +17,9 @@
     background-color: rgb(0, 200, 255);
   }
 
-  #searchBox, #city-search {
+  /* #searchBox, #city-search {
     float: left;
-  }
+  } */
 
   /* #currentW {
 

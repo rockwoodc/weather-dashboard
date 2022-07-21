@@ -5,8 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
+    <!--Bulma for styling -->
+    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" rel="stylesheet">
     <!--bootstrap-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"> -->
     <!--jquery-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css">
     <!--google fonts-->
@@ -17,13 +19,15 @@
     <!--my style sheet-->
     <link rel="stylesheet" href="./assets/style.css"/>
 </head>
-<body class="flex-column min-100-vh">
-    <header class="header">
-      <h1>Weather Dashboard</h1>
-    </header>
-    
-    <container class="flex-row justify-space-between">
-      <div id="searchBox" class="col-12 col-md-4">
+<header>
+  <div class="navbar has-text-centered">
+      <div class="navbar-item is-size-2 has-text-centered">Weather Dashboard</div>
+  </div>
+</header>
+
+<body>
+    <container class="columns">
+      <div id="searchBox" class="column is-one-quarter">
         <div class="card">
           <h1 class="card-header">Search for a City:</h1>
           <form id="user-form" class="card-body">
@@ -33,29 +37,28 @@
              <button type="submit" class="btn">Search</button>
           </form>
             <!-- where previously searched cities will appear-->
-            <div id="city-search"></div>
+            <div id="city-search" class="column"></div>
+        </div>
+      </div>
+
+      <div id="currentW" class="column" style="width: 18rem;">
+        <div id=currentPlace class="card-header">Date & Location</div>
+          <ul class="weather-data list-group list-group-flush">
+            <li class="list-group-item">Temperature: <span id="temp"></span></li>
+            <li class="list-group-item">Winds: <span id="winds"></span></li>
+            <li class="list-group-item">Humidity: <span id="humidity"></span></li>
+            <li class="list-group-item"> UV Index: <span id="uv"></span></li>
+          </ul>
         </div>
       </div>
     </container>
 
-  <container>
-    <div id="currentW" class="card col-12 col-md-8" style="width: 18rem;">
-      <div id=currentPlace class="card-header">Date & Location</div>
-        <ul class="weather-data list-group list-group-flush">
-          <li class="list-group-item">Temperature: <span id="temp"></span></li>
-          <li class="list-group-item">Winds: <span id="winds"></span></li>
-          <li class="list-group-item">Humidity: <span id="humidity"></span></li>
-          <li class="list-group-item"> UV Index: <span id="uv"></span></li>
-        </ul>
-      </div>
-    </div>
-  </container>
       
         <!--weather information will appear-->
-    <container id="five-day" class="flex-row">
+    <container id="five-day" class="rows">
       <div class="list-group" id="forecast-info">
       <!--5 day forcast starts-->
-        <div class="card" id="five-day-forecast">
+        <div class="row card" id="five-day-forecast">
           <h2>Five Day Forecast</h2>
         </div>
       </div>
