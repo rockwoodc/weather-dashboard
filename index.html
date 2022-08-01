@@ -16,52 +16,50 @@
     <!--my style sheet-->
     <link rel="stylesheet" href="./assets/style.css"/>
 </head>
-<body class="flex-column min-100-vh">
-    <header class="header">
+<body>
+  <div class="container-fluid">
+    <header>
       <h1>Weather Dashboard</h1>
     </header>
     
-  <container class="flex-row justify-space-between">
-    <div id="searchBox" class="col-12 col-md-4">
-      <div class="card">
-        <h1 class="card-header">Search for a City:</h1>
-        <form id="user-form" class="card-body">
-            <!--adds an input box where the city name will be aquired-->
-          <input name="city-name" id="city-name" type="text" autofocus="true" class="form-input">
-          <br>
-          <button type="submit" class="btn">Search</button>
-        </form>
+    <div class="row">
+      <div id="searchBox" class="sidesearch col-md-4">
+        <div class="mt-2" id="response-container">
+          <h1 class="searchTitle">Search for a City:</h1>
+          <form id="user-form" class="card-body">
+              <!--adds an input box where the city name will be aquired-->
+            <input name="city-name" id="city-name" type="text" autofocus="true" class="form-input">
+            <br>
+            <button type="submit" class="btn">Search</button>
+          </form>
+        </div>
+        <div class=lineBreak></div>
+        <div class="list-group"></div>
+        <!-- where previously searched cities will appear-->
+        <div id="city-search"></div>
       </div>
-    </div>
-  </container>
 
-  <container>
-    <!-- where previously searched cities will appear-->
-    <div id="city-search" class="button"></div>
-  </container>
-
-  <container>
-    <div id="currentW" class="card col-12 col-md-8" style="width: 18rem;">
-      <div id="currentPlace" class="card-header">Date & Location</div>
-        <ul class="weather-data list-group list-group-flush">
-          <li class="list-group-item">Temperature: <span id="temp"></span></li>
-          <li class="list-group-item">Winds: <span id="winds"></span></li>
-          <li class="list-group-item">Humidity: <span id="humidity"></span></li>
-          <li class="list-group-item"> UV Index: <span id="uv"></span></li>
-        </ul>
-      </div>
-    </div>
-  </container>
-      
-        <!--weather information will appear-->
-    <container id="five-day" class="row">
-      <div class="col-sm-6" id="forecast-info">
-      <!--5 day forcast starts-->
-        <div class="card" id="five-day-forecast">
-          <h2>Five Day Forecast</h2>
+      <div id="currentW" class="card col-md-8">
+        <div id="currentPlace" class="card-body row p-2">Date & Location</div>
+          <ul class="weather-data">
+            <li class="list-group-item">Temperature: <span id="temp"></span></li>
+            <li class="list-group-item">Winds: <span id="winds"></span></li>
+            <li class="list-group-item">Humidity: <span id="humidity"></span></li>
+            <li class="list-group-item"> UV Index: <span id="uv"></span></li>
+          </ul>
         </div>
       </div>
-    </container>
+
+      <div id="five-day forcast-info" class="row">
+        <!--5 day forcast starts-->
+          <div class="row" id="five-day-forecast">
+            <h2>Five Day Forecast</h2>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
             
         
           
