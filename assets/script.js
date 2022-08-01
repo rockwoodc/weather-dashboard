@@ -1,4 +1,4 @@
-var searchHistory = []
+
 var searchHistoryContainer = document.getElementById("#city-search");
 var apiKey = "&appid=8cde0c178514f3d28c21cf8f9c44b5a6"
 var weatherEl = document.getElementById("forecast-info");
@@ -22,14 +22,29 @@ var formSubmitHandler = function(event) {
 //create a function to check whether a searched city is in search history
 function checkHistory(city){
     console.log(city);
+    var history = []
+    var searchHistory = localStorage.getItem("searchHistory");
+    console.log(searchHistory);
     //check to see if there is a search history array in local storage
-    if (localStorage.getItem("searchHistory")){
-        searchHistory = localStorage.getItem("searchHistory");
-        searchHistory = searchHistory.push(city);
+    if (!searchHistory) {
+        console.log("Check history");
+        // localStorage.setItem("searchHistory", searchHistory);
+        history.push(city);
+        console.log(history);
+        localStorage.setItem("searchHistory", JSON.stringify(history));
+        return
+    }
+    if (searchHistory.includes(city)) {
+        console.log("Already there!!")
+        return
+    }
+    if (searchHistory) {
+        console.log("check 1");
+        history = JSON.parse(searchHistory);
+        history.push(city);
+        console.log(typeof history);
+        localStorage.setItem("searchHistory", JSON.stringify(history));
         //check the array that comes back to see if the city already there
-    }else{
-        localStorage.setItem("searchHistory", searchHistory);
-
     }
     console.log(searchHistory);
 }
@@ -79,7 +94,7 @@ var displayCurrent = function (weather){
     var tempData = document.getElementById("temp");    
     var tempF1 = weather.current.temp - 273.15;
     //finish out the equation to convert to F
-    tempData.textContent = "Temp: " + Math.round(tempF1 * 1.8 + 32) + " F";
+    tempData.textContent = Math.round(tempF1 * 1.8 + 32) + " F";
     var windData = document.getElementById("winds");
         windData.textContent = weather.current.wind_speed + " MPH";
     var humData = document.getElementById("humidity");
@@ -148,23 +163,18 @@ var fiveDay = function(forecast) {
         //append card to the dom
         fiveDayEL.append(card);
     };
+};
+
+//render search history as buttons
+function renderHistory () {
+    var historyDisplay = JSON.parse(localStorage.getItem("searchHistory"));
+    console.log(historyDisplay)
+    //for loop uses array for cities to render/append the buttons to the container
+    for (let i = 0; i < historyDisplay.length; i++) {
+        var btn = document.createElement("button");
+        btn.textContent = historyDisplay[i];
+        console.log(btn);
+        searchHistoryContainer.append(btn);  
+    }
 }
-// save users searched cities
-// function getSearch(search) {
-//     searchHistoryContainer.innerHTML = "";
-//     console.log(search);
-
-//     for (let i=0; i<searchHistory.length; i++);
-//         console.log("hello1");
-//         var btn = document.createElement("button");
-//         btn.textContent = searchHistory[i];
-//         searchHistoryContainer.append("btn");
-// };
-
-// function appendToSearchHistory(search) {
-//     console.log("hello2");
-//     searchHistory.push(search);
-//     localStorage.setItem("city-search",JSON.stringify(searchHistory));
-// };
-
-// getSearch();
+renderHistory();
